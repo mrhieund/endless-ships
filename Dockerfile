@@ -14,7 +14,8 @@ RUN cd resources/game \
  && git checkout $(git tag --list "v*" --sort=-v:refname | head -n 1)
 
 # Build
-RUN boot build
+RUN java --version
+RUN BOOT_JVM_OPTIONS="-Xmx2g" boot build
 
 # Copy build results to the final image
 FROM nginx:alpine
